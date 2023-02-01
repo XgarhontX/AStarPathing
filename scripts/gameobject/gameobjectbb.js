@@ -1,8 +1,7 @@
 class GameObjectBB extends GameObject {
-    constructor(posX, posY, width, height, color) {
-        super(posX, posY, width, height, color)
-        this.BB = new BoundingBox(posX, posY, width, height)
-        this.BB.updateSides()
+    constructor(posX, posY, width, height, color, centered = false) {
+        super(posX, posY, width, height, color, centered)
+        this.BB = new BoundingBox(posX, posY, width, height, centered)
     }
 
     //child implements

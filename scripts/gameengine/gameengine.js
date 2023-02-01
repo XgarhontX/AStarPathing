@@ -49,89 +49,76 @@ class GameEngine {
             this.mouse = getXandY(e);
         });
 
-        this.ctx.canvas.addEventListener("click", e => {
-            if (this.options.debugging) {
-                console.log("CLICK", getXandY(e));
-            }
-            this.click = getXandY(e);
-        });
-
-        this.ctx.canvas.addEventListener("wheel", e => {
-            if (this.options.debugging) {
-                console.log("WHEEL", getXandY(e), e.wheelDelta);
-            }
-            e.preventDefault(); // Prevent Scrolling
-            this.wheel = e;
-        });
-
-        this.ctx.canvas.addEventListener("contextmenu", e => {
-            if (this.options.debugging) {
-                console.log("RIGHT_CLICK", getXandY(e));
-            }
-            e.preventDefault(); // Prevent Context Menu
-            this.rightclick = getXandY(e);
-        });
+        // this.ctx.canvas.addEventListener("click", e => {
+        //     if (this.options.debugging) {
+        //         console.log("CLICK", getXandY(e));
+        //     }
+        //     this.click = getXandY(e);
+        // });
+        //
+        // this.ctx.canvas.addEventListener("wheel", e => {
+        //     if (this.options.debugging) {
+        //         console.log("WHEEL", getXandY(e), e.wheelDelta);
+        //     }
+        //     e.preventDefault(); // Prevent Scrolling
+        //     this.wheel = e;
+        // });
+        //
+        // this.ctx.canvas.addEventListener("contextmenu", e => {
+        //     if (this.options.debugging) {
+        //         console.log("RIGHT_CLICK", getXandY(e));
+        //     }
+        //     e.preventDefault(); // Prevent Context Menu
+        //     this.rightclick = getXandY(e);
+        // });
 
         //Keys https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
         this.ctx.canvas.addEventListener("keydown", (e) => {
             switch (e.code) {
-                case  "ArrowLeft":
-                case "KeyA":
-                    this.key_left = true;
-                    break;
-                case "ArrowDown":
-                case "KeyS":
-                    this.key_down = true;
-                    break;
-                case "ArrowRight":
-                case "KeyD":
-                    this.key_right = true;
-                    break;
                 case "Space":
-                case "ArrowUp":
-                case "KeyW":
-                    this.key_up = true;
+                    this.key_start = true
                     break;
-                case "KeyR":
-                    this.key_restart = true;
-                    break;
-
             }
         }, false);
         this.ctx.canvas.addEventListener("keyup", (e) => {
             switch (e.code) {
-                case  "ArrowLeft":
-                case "KeyA":
-                    this.key_left = false;
-                    break;
-                case "ArrowDown":
-                case "KeyS":
-                    this.key_down = false;
-                    break;
-                case "ArrowRight":
-                case "KeyD":
-                    this.key_right = false;
-                    break;
                 case "Space":
-                case "ArrowUp":
-                case "KeyW":
-                    this.key_up = false;
-                    break;
-                case "KeyR":
-                    this.key_restart = false;
+                    this.key_start = false
                     break;
             }
         }, false);
+        //Mouse
+        this.ctx.canvas.addEventListener("mousedown", (e) => {
+            if(e.button == 0) {
+                this.left_click = true;
+            } else if (e.button == 2) {
+                this.right_click = true;
+            }
+        });
+        this.ctx.canvas.addEventListener("mouseup", (e) => {
+            if(e.button == 0) {
+                this.left_click = false;
+            } else if (e.button == 2) {
+                this.right_click = false;
+            }
+        });
+        this.ctx.canvas.addEventListener("contextmenu", e => { //Prevent Context Menu
+            e.preventDefault();
+            this.rightclick = getXandY(e);
+        });
 
     };
 
     addEntity(entity) {
+        if (entity instanceof Player) {
+            this.player = entity
+        }
         this.entities.push(entity);
     };
 
     draw() {
         // Clear the whole canvas with transparent color (rgba(0, 0, 0, 0))
-        this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+        // this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
         // Draw latest things first
         for (let i = this.entities.length - 1; i >= 0; i--) {

@@ -13,11 +13,15 @@
         text-align: center;
         font-family: "Arial";
     }
+    p {
+        text-align: center;
+        font-family: "Arial";
+    }
 </style>
 
 <head>
     <meta charset="utf-8">
-    <title>Survive Bogosort</title>
+    <title>A*</title>
   
     <script type="text/javascript" src="./scripts/gameengine/assetmanager.js"></script>
     <script type="text/javascript" src="./scripts/gameengine/timer.js"></script>
@@ -25,22 +29,19 @@
     <script type="text/javascript" src="./scripts/gameengine/util.js"></script>
     <script type="text/javascript" src="./scripts/gameengine/boundingbox.js"></script>
     <script type="text/javascript" src="./scripts/gameengine/animator.js"></script>
-    <script type="text/javascript" src="./scripts/gameengine/animatortext.js"></script>
 
-    <script type="text/javascript" src="./scripts/gameobject/title.js"></script>
     <script type="text/javascript" src="./scripts/gameobject/gameobject.js"></script>
     <script type="text/javascript" src="./scripts/gameobject/gameobjectbb.js"></script>
     <script type="text/javascript" src="./scripts/gameobject/player.js"></script>
-    <script type="text/javascript" src="scripts/gameobject/fallingBlock.js"></script>
-    <script type="text/javascript" src="./scripts/gameobject/background.js"></script>
-    <script type="text/javascript" src="./scripts/gameobject/spawner.js"></script>
-    <script type="text/javascript" src="./scripts/gameobject/hud.js"></script>
-    <script type="text/javascript" src="./scripts/gameobject/scenemanager.js"></script>
+    <script type="text/javascript" src="scripts/gameobject/AStarAgent.js"></script>
+    <script type="text/javascript" src="scripts/gameobject/RectangleObstacle.js"></script>
 
     <script type="text/javascript" src="./scripts/main.js"></script>
 </head>
 
 <body>
+    <h1>A* algorithm (gridless)</h1>
+    <p>LeftMouse: Place/Remove Blocks<br>RightMouse: Start A* (hold to preview)</p>
     <canvas id="gameWorld" width="1900" height="1000" style="background: white; border: 1px solid black" tabindex="0" autofocus></canvas>
 </body>
 

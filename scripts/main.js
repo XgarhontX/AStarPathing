@@ -1,6 +1,5 @@
 const GAME_ENGINE = new GameEngine();
 const ASSET_MANAGER = new AssetManager();
-const SCENE_MANAGER = new SceneManager("")
 const FRAME_WIDTH = 1900
 const FRAME_HEIGHT = 1000
 
@@ -11,6 +10,7 @@ ASSET_MANAGER.downloadAll(() => {
 	GAME_ENGINE.init(ctx);
 
 	//Scene
+	GAME_ENGINE.addEntity(new Player())
 
 	GAME_ENGINE.start();
 });

@@ -1,10 +1,13 @@
 class GameObject {
-    constructor(posX, posY, width, height, color) {
-        Object.assign(this, {posX, posY, width, height, color})
-        // if (centered) {
-        //     this.posX = this.setCenteredPosX(posX)
-        //     this.posY = this.setCenteredPosY(posY)
-        // }
+    constructor(posX, posY, width, height, color, centered=false) {
+        Object.assign(this, {width, height, color})
+        if (centered) {
+            this.setCenteredPosX(posX)
+            this.setCenteredPosX(posY)
+        } else {
+            this.posX = posX
+            this.posY = posY
+        }
         this.removeFromWorld = false
         this.animator = new Animator(width, height)
     }
