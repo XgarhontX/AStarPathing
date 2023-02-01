@@ -1,6 +1,8 @@
 # Gridless A* Pathing Visualizer
 Collision based A* pathfinding.
 ![Preview](./Preview.png)
+## Website
+https://xgarhontx.github.io/AStarPathing/
 
 ## Controls
 LeftMouse: Place/Remove Blocks <br>
