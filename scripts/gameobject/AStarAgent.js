@@ -179,6 +179,10 @@ class AStar {
                     //Check if walkable
                     let tempDim = bb_size
                     let BB = new BoundingBox(node_position[0], node_position[1], tempDim, tempDim)
+                    //Edge: end_node is inaccessible
+                    if (Math.abs(BB.posX - end_node.position[0]) < grid_size && Math.abs(BB.posY - end_node.position[1]) < grid_size) {
+                        return;
+                    }
                     if (ASTAR_DEBUG) BB.drawBoundingBox()
                     let isWalkable = true
                     for (let j = 0; j < GAME_ENGINE.entities.length; j++) {
