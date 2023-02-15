@@ -224,7 +224,7 @@ class AStar {
                     tempBool = false
                     for (let j = 0; j < open_list.length; j++) {
                         let open_node = open_list[j]
-                        if (!tempBool && child.equals(open_node, grid_size) && child.g > open_node.g) {
+                        if (!tempBool && child.equals(open_node, grid_size)) { //&& child.g > open_node.g
                             tempBool = true
                             break
                         }
