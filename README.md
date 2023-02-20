@@ -1,5 +1,5 @@
 # Gridless A* Pathing Visualizer
-Collision based A* pathfinding.
+Collision based A* pathfinding w/ stack based exploration *(because js doesn't have priority queue)*. 
 ![Preview](./Preview.png)
 ## Website
 https://xgarhontx.github.io/AStarPathing/
