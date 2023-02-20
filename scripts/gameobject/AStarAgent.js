@@ -144,11 +144,16 @@ class AStar {
                 closed_list.push(current_node)
 
                 //Base: Goal Found, backtrack and ez
-                if (current_node.equals(end_node, grid_size)) {
+                if (current_node.equals(end_node, grid_size) || iterations == 0) {
                     let resultingPath = []
                     let curr = current_node
                     while (curr != null) {
-                        resultingPath.push(curr.position)
+                        //Offset towards the center for agent to path correctly
+                        let positionOffset = curr.position
+                        positionOffset[0] - ASTAR_GRID_SIZE / 2
+                        positionOffset[1] - ASTAR_GRID_SIZE / 2
+
+                        resultingPath.push(positionOffset)
                         curr = curr.parent
                     }
                     console.log(this.pathList)
@@ -265,6 +270,6 @@ class ASNode {
     }
 
     equals(other, grid_size) {
-        return Math.abs(this.position[0] - other.position[0]) < grid_size && Math.abs(this.position[1] - other.position[1]) < grid_size
+        return Math.abs(this.position[0] - other.position[0]) < grid_size - 1 && Math.abs(this.position[1] - other.position[1]) < grid_size - 1 //-1 to keep it from underflowing
     }
 }
